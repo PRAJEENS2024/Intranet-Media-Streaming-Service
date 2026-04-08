@@ -5,6 +5,7 @@ import { testConnection } from './config/database.js';
 import authRoutes from './routes/authRoutes.js';
 import categoryRoutes from './routes/categoryRoutes.js';
 import videoRoutes from './routes/videoRoutes.js';
+import engagementRoutes from './routes/engagementRoutes.js';
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/auth', authRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/videos', videoRoutes);
+app.use('/api/engagement', engagementRoutes);
 
 // Health check route
 app.get('/api/health', (req, res) => {
