@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import { testConnection } from './config/database.js';
 
 dotenv.config();
 
@@ -18,6 +19,12 @@ app.use(express.urlencoded({ extended: true }));
 // Health check route
 app.get('/api/health', (req, res) => {
   res.json({ status: 'Server is running', timestamp: new Date().toISOString() });
+});
+
+// Database health check
+app.get('/api/db-health', async (req, res) => {
+  const isConnected = await testConnection();
+  res.json({ database: isConnected ? 'connected' : 'disconnected' });
 });
 
 // 404 handler
