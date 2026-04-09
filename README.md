@@ -57,11 +57,16 @@ A full-stack Netflix-like media streaming application for internal networks with
    npm install
    ```
 
-3. **Environment Configuration**
-   - Create `.env` files in both backend and frontend directories
-   - Configure database and API endpoints
+3. **Database Setup**
+   - Create a postgres database named `imss_db`.
+   - Run the initial schema migration in `backend/migrations/001_initial_schema.sql` (or use `run_migrations.bat`).
+   - Run the seeded categories and test data via `backend/migrations/002_seed_categories.sql` and `003_sample_data.sql`.
 
-4. **Run Development Servers**
+4. **Environment Configuration**
+   - The `.env` files are already provided based on `.env.example`.
+   - Ensure `backend/.env` has the correct `DB_PASSWORD` for your postgres setup.
+
+5. **Run Development Servers**
    - Backend: `npm run dev` (in backend directory)
    - Frontend: `npm run dev` (in frontend directory)
 

@@ -11,6 +11,10 @@ const LoginPage = React.lazy(() => import('./pages/LoginPage'));
 const RegisterPage = React.lazy(() => import('./pages/RegisterPage'));
 const HomePage = React.lazy(() => import('./pages/HomePage'));
 const BrowsePage = React.lazy(() => import('./pages/BrowsePage'));
+const VideoDetailPage = React.lazy(() => import('./pages/VideoDetailPage'));
+const UploadPage = React.lazy(() => import('./pages/UploadPage'));
+const ProfilePage = React.lazy(() => import('./pages/ProfilePage'));
+const SearchPage = React.lazy(() => import('./pages/SearchPage'));
 
 export default function App() {
   return (
@@ -45,6 +49,66 @@ export default function App() {
                     <main className="flex-1">
                       <React.Suspense fallback={<div>Loading...</div>}>
                         <BrowsePage />
+                      </React.Suspense>
+                    </main>
+                  </div>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/search"
+              element={
+                <ProtectedRoute>
+                  <div className="flex">
+                    <Sidebar />
+                    <main className="flex-1">
+                      <React.Suspense fallback={<div>Loading...</div>}>
+                        <SearchPage />
+                      </React.Suspense>
+                    </main>
+                  </div>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/video/:id"
+              element={
+                <ProtectedRoute>
+                  <div className="flex">
+                    <Sidebar />
+                    <main className="flex-1">
+                      <React.Suspense fallback={<div>Loading...</div>}>
+                        <VideoDetailPage />
+                      </React.Suspense>
+                    </main>
+                  </div>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <div className="flex">
+                    <Sidebar />
+                    <main className="flex-1">
+                      <React.Suspense fallback={<div>Loading...</div>}>
+                        <ProfilePage />
+                      </React.Suspense>
+                    </main>
+                  </div>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/upload"
+              element={
+                <ProtectedRoute>
+                  <div className="flex">
+                    <Sidebar />
+                    <main className="flex-1">
+                      <React.Suspense fallback={<div>Loading...</div>}>
+                        <UploadPage />
                       </React.Suspense>
                     </main>
                   </div>

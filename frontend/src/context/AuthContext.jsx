@@ -36,7 +36,10 @@ export const AuthProvider = ({ children }) => {
       axios.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
       return userData;
     } catch (err) {
-      const message = err.response?.data?.error || 'Registration failed';
+      let message = err.response?.data?.error || 'Registration failed';
+      if (err.response?.data?.details && err.response.data.details.length > 0) {
+        message = err.response.data.details[0].msg;
+      }
       setError(message);
       throw new Error(message);
     }

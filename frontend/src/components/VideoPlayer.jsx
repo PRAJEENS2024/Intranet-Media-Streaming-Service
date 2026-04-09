@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { Play, Pause, Volume2, VolumeX, Maximize2, SkipBack, SkipForward, Heart } from 'lucide-react';
 
 export default function VideoPlayer({ videoUrl, videoDuration = 0 }) {
@@ -77,17 +77,17 @@ export default function VideoPlayer({ videoUrl, videoDuration = 0 }) {
   return (
     <div
       ref={containerRef}
-      className={`relative bg-black w-full ${isFullscreen ? 'h-screen' : 'aspect-video'} group`}
+      className={`relative bg-black w-full overflow-hidden ${isFullscreen ? 'h-screen' : 'aspect-video'} group`}
     >
       <video
         ref={videoRef}
         src={videoUrl}
         onTimeUpdate={handleTimeUpdate}
-        className="w-full h-full"
+        className="w-full h-full object-contain"
       />
 
       {/* Controls overlay */}
-      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/50 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900 via-gray-900/60 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
         {/* Progress bar */}
         <input
           type="range"
@@ -95,26 +95,26 @@ export default function VideoPlayer({ videoUrl, videoDuration = 0 }) {
           max={videoDuration || (videoRef.current?.duration || 0)}
           value={currentTime}
           onChange={handleProgressChange}
-          className="w-full h-1 bg-dark-600 rounded cursor-pointer accent-red-600 mb-4"
+          className="w-full h-1.5 bg-gray-600 rounded cursor-pointer accent-neon-cyan mb-4 hover:h-2 transition-all shadow-[0_0_5px_rgba(0,243,255,0.5)]"
         />
 
-        <div className="flex items-center justify-between text-white">
+        <div className="flex items-center justify-between text-white drop-shadow-md">
           {/* Left controls */}
-          <div className="flex items-center gap-2">
-            <button onClick={togglePlay} className="hover:text-red-600 transition">
+          <div className="flex items-center gap-3">
+            <button onClick={togglePlay} className="hover:text-neon-cyan hover:drop-shadow-[0_0_5px_rgba(0,243,255,0.8)] transition">
               {isPlaying ? <Pause size={24} /> : <Play size={24} />}
             </button>
 
-            <button onClick={() => handleSkip('backward')} className="hover:text-red-600 transition">
+            <button onClick={() => handleSkip('backward')} className="hover:text-neon-cyan hover:drop-shadow-[0_0_5px_rgba(0,243,255,0.8)] transition">
               <SkipBack size={20} />
             </button>
 
-            <button onClick={() => handleSkip('forward')} className="hover:text-red-600 transition">
+            <button onClick={() => handleSkip('forward')} className="hover:text-neon-cyan hover:drop-shadow-[0_0_5px_rgba(0,243,255,0.8)] transition">
               <SkipForward size={20} />
             </button>
 
-            <div className="flex items-center gap-1 ml-4">
-              <button onClick={toggleMute} className="hover:text-red-600 transition">
+            <div className="flex items-center gap-2 ml-4">
+              <button onClick={toggleMute} className="hover:text-neon-cyan transition">
                 {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
               </button>
               <input
@@ -124,25 +124,25 @@ export default function VideoPlayer({ videoUrl, videoDuration = 0 }) {
                 step="0.1"
                 value={isMuted ? 0 : volume}
                 onChange={handleVolumeChange}
-                className="w-20 h-1 bg-dark-600 rounded cursor-pointer accent-red-600"
+                className="w-20 h-1.5 bg-gray-600 rounded cursor-pointer accent-neon-cyan hover:h-2 transition-all"
               />
             </div>
 
-            <span className="ml-4 text-sm">
+            <span className="ml-4 text-sm font-medium">
               {formatTime(currentTime)} / {formatTime(videoDuration)}
             </span>
           </div>
 
           {/* Right controls */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <button
               onClick={() => setIsLiked(!isLiked)}
-              className={`transition ${isLiked ? 'text-red-600' : 'hover:text-red-600'}`}
+              className={`transition hover:drop-shadow-[0_0_5px_rgba(255,0,255,0.8)] ${isLiked ? 'text-neon-pink drop-shadow-[0_0_5px_rgba(255,0,255,0.8)]' : 'hover:text-neon-pink'}`}
             >
               <Heart size={24} fill={isLiked ? 'currentColor' : 'none'} />
             </button>
 
-            <button onClick={toggleFullscreen} className="hover:text-red-600 transition">
+            <button onClick={toggleFullscreen} className="hover:text-neon-cyan hover:drop-shadow-[0_0_5px_rgba(0,243,255,0.8)] transition ml-2">
               <Maximize2 size={24} />
             </button>
           </div>
@@ -153,10 +153,10 @@ export default function VideoPlayer({ videoUrl, videoDuration = 0 }) {
       {!isPlaying && (
         <button
           onClick={togglePlay}
-          className="absolute inset-0 flex items-center justify-center hover:bg-black/20 transition group/play"
+          className="absolute inset-0 flex items-center justify-center bg-black/40 hover:bg-black/20 backdrop-blur-[1px] transition-all group/play"
         >
-          <div className="w-20 h-20 bg-red-600 rounded-full flex items-center justify-center group-hover/play:scale-110 transition">
-            <Play size={48} className="text-white ml-1" fill="white" />
+          <div className="w-24 h-24 bg-neon-cyan/20 border-2 border-neon-cyan shadow-[0_0_20px_rgba(0,243,255,0.6)] backdrop-blur-md rounded-full flex items-center justify-center group-hover/play:scale-110 transition-transform duration-300">
+            <Play size={48} className="text-neon-cyan ml-2 drop-shadow-[0_0_5px_rgba(0,243,255,0.8)]" fill="currentColor" />
           </div>
         </button>
       )}

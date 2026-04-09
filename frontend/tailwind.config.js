@@ -1,4 +1,5 @@
 module.exports = {
+  darkMode: 'class',
   content: [
     "./index.html",
     "./src/**/*.{js,jsx}",
@@ -17,7 +18,17 @@ module.exports = {
           700: '#374151',
           800: '#1f2937',
           900: '#111827',
+        },
+        neon: {
+          cyan: '#00f3ff',
+          pink: '#ff00ff',
+          purple: '#bc13fe',
         }
+      },
+      boxShadow: {
+        'neon-cyan': '0 0 5px theme("colors.neon.cyan"), 0 0 20px theme("colors.neon.cyan")',
+        'neon-pink': '0 0 5px theme("colors.neon.pink"), 0 0 20px theme("colors.neon.pink")',
+        'neon-purple': '0 0 5px theme("colors.neon.purple"), 0 0 20px theme("colors.neon.purple")',
       }
     },
   },
