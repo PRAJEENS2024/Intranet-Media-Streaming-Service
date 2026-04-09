@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../config/axios';
 import { useAuth } from '../context/AuthContext';
 import { Clock, Heart, User, Film, PlayCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';

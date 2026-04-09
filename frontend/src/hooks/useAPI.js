@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../config/axios';
 
 export const useVideos = (category = null, search = null, page = 1) => {
   const [videos, setVideos] = useState([]);

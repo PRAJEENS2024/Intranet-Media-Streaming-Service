@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import { useDebounce } from '../hooks/useDebounce';
-import axios from 'axios';
+import axios from '../config/axios';
 
 export default function Header() {
   const { user, logout, isAuthenticated } = useAuth();

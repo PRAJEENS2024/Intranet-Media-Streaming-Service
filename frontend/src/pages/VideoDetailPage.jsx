@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../config/axios';
 import { useParams } from 'react-router-dom';
 import { Heart, Share2, Download, MoreVertical, Play } from 'lucide-react';
 import VideoPlayer from '../components/VideoPlayer';

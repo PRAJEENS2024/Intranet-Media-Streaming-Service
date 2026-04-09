@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../config/axios';
 import { useLocation } from 'react-router-dom';
 import VideoCard from '../components/VideoCard';
 import { Search } from 'lucide-react';
